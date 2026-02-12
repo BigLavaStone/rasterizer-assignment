@@ -31,6 +31,20 @@ public class WuRasterizer implements LineRasterizer{
 
         float y = y1;
 
+        // Point calculation incremental
+        for (int x = x1; x <= x2; x++) {
+
+            if (steep) {
+                points.add(new Point(Math.round(y), x));
+                points.add(new Point(Math.round(y) + 1, x));
+            } else {
+                points.add(new Point(x, Math.round(y)));
+                points.add(new Point(x, Math.round(y) + 1));
+            }
+
+            y += gradient;
+        }
+
         return points.toArray(new Point[0]);
     }    
 }
