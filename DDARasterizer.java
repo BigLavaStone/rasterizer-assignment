@@ -18,7 +18,6 @@ public class DDARasterizer implements LineRasterizer  {
         float y = p1.y;
 
         // Point calculation incremental
-
         for (int i = 0; i <= steps; i++) {
             points.add(new Point(Math.round(x), Math.round(y)));
             x += xInc;
