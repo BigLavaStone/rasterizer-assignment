@@ -15,6 +15,28 @@ public class MidpointCircleRasterizer implements LineRasterizer{
         int y = radius;
         int d = 1 - radius;
 
+        // Circle point calculation incremental
+        while (x <= y) {
+
+            // 8-way symmetry
+            points.add(new Point(cx + x, cy + y));
+            points.add(new Point(cx - x, cy + y));
+            points.add(new Point(cx + x, cy - y));
+            points.add(new Point(cx - x, cy - y));
+            points.add(new Point(cx + y, cy + x));
+            points.add(new Point(cx - y, cy + x));
+            points.add(new Point(cx + y, cy - x));
+            points.add(new Point(cx - y, cy - x));
+
+            if (d < 0) {
+                d += 2 * x + 3;
+            } else {
+                d += 2 * (x - y) + 5;
+                y--;
+            }
+
+            x++;
+        }
 
         return points.toArray(new Point[0]);
     }
