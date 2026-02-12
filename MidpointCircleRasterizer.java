@@ -2,9 +2,7 @@ import java.util.ArrayList;
 
 public class MidpointCircleRasterizer implements LineRasterizer{
     public Point[] rasterize(Point p1, Point p2) {
-
         // Initialization
-
         ArrayList<Point> points = new ArrayList<>();
 
         int cx = (p1.x + p2.x) / 2;
@@ -12,6 +10,12 @@ public class MidpointCircleRasterizer implements LineRasterizer{
 
         int radius = (int)(Math.hypot(p2.x - p1.x, p2.y - p1.y) / 2);
         
+        // Circle Parameters
+        int x = 0;
+        int y = radius;
+        int d = 1 - radius;
+
+
         return points.toArray(new Point[0]);
     }
 }
