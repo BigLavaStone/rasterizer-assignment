@@ -21,7 +21,26 @@ class BresenhamRasterizer implements LineRasterizer {
 
         int err = dx - dy;
 
-        return new Point[]{ new Point(0,0), new Point(2,3) };
+        // Point calculation incremental
+        while (true) {
+            points.add(new Point(x1, y1));
+
+            if (x1 == x2 && y1 == y2) break;
+
+            int e2 = 2 * err;
+
+            if (e2 > -dy) {
+                err -= dy;
+                x1 += sx;
+            }
+
+            if (e2 < dx) {
+                err += dx;
+                y1 += sy;
+            }
+        }
+
+        return points.toArray(new Point[0]);
     }
 
 }
